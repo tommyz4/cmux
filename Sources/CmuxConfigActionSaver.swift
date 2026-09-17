@@ -1,4 +1,5 @@
 import Foundation
+import CmuxTextActions
 
 /// Persists saved workspace layout results into the global cmux.json,
 /// preserving JSONC comments and formatting via `JSONCObjectEditor`.
@@ -86,6 +87,52 @@ enum CmuxConfigActionSaver {
             throw SaveError.malformedConfig(globalConfigPath)
         }
 
+        try writeOwnerOnlyConfig(updated, globalConfigPath: globalConfigPath, fileManager: fileManager)
+        return SaveResult(actionID: actionID, configPath: globalConfigPath)
+    }
+
+    /// Creates or replaces a `type: "text"` action (a snippet) in the global
+    /// config, preserving comments and formatting. Pass an existing action id
+    /// to update that entry in place; nil derives a unique id from the title.
+    @discardableResult
+    static func saveTextAction(
+        id existingActionID: String? = nil,
+        title: String,
+        category: String?,
+        payload: CmuxTextActionPayload,
+        globalConfigPath: String,
+        reservedActionIDs: Set<String> = [],
+        fileManager: FileManager = .default
+    ) throws -> SaveResult {
+        let source: String
+        if fileManager.fileExists(atPath: globalConfigPath) {
+            guard let data = fileManager.contents(atPath: globalConfigPath),
+                  let text = String(data: data, encoding: .utf8) else {
+                throw SaveError.unreadableConfig(globalConfigPath)
+            }
+            source = text
+            try validateEditableConfig(source, globalConfigPath: globalConfigPath)
+        } else {
+            source = emptyConfigTemplate
+        }
+        let actionID = existingActionID ?? uniqueActionID(
+            forTitle: title,
+            existingIDs: existingActionIDs(inConfigSource: source).union(reservedActionIDs)
+        )
+        let definition = CmuxConfigActionDefinition(
+            action: .text(payload),
+            title: title,
+            category: category
+        )
+        let valueJSON = try encodeActionValueJSON(definition)
+        guard let updated = JSONCObjectEditor.setNestedObjectProperty(
+            parentKey: "actions",
+            childKey: actionID,
+            childValueJSON: valueJSON,
+            in: source
+        ) else {
+            throw SaveError.malformedConfig(globalConfigPath)
+        }
         try writeOwnerOnlyConfig(updated, globalConfigPath: globalConfigPath, fileManager: fileManager)
         return SaveResult(actionID: actionID, configPath: globalConfigPath)
     }

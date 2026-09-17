@@ -34,6 +34,7 @@ public enum SettingsSectionID: String, CaseIterable, Identifiable, Sendable, Has
     case globalHotkey
     case keyboardShortcuts
     case workspaceColors
+    case snippets
     case settingsJSON
     case reset
 
@@ -60,6 +61,7 @@ public enum SettingsSectionID: String, CaseIterable, Identifiable, Sendable, Has
         case .globalHotkey: return String(localized: "settings.section.globalHotkey", defaultValue: "Global Hotkey")
         case .keyboardShortcuts: return String(localized: "settings.section.keyboardShortcuts", defaultValue: "Keyboard Shortcuts")
         case .workspaceColors: return String(localized: "settings.section.workspaceColors", defaultValue: "Workspace Colors")
+        case .snippets: return String(localized: "settings.section.snippets", defaultValue: "Snippets")
         case .settingsJSON: return "cmux.json"
         case .reset: return String(localized: "settings.section.reset", defaultValue: "Reset")
         }
@@ -86,6 +88,7 @@ public enum SettingsSectionID: String, CaseIterable, Identifiable, Sendable, Has
         case .globalHotkey: return "keyboard.badge.ellipsis"
         case .keyboardShortcuts: return "keyboard"
         case .workspaceColors: return "paintpalette"
+        case .snippets: return "text.cursor"
         case .settingsJSON: return "doc.text"
         case .reset: return "arrow.counterclockwise"
         }
@@ -118,6 +121,7 @@ public enum SettingsSectionID: String, CaseIterable, Identifiable, Sendable, Has
         case .globalHotkey: return "system wide shortcut"
         case .keyboardShortcuts: return "keybindings commands chords"
         case .workspaceColors: return "palette tabs indicator"
+        case .snippets: return "snippet snippets text action paste prompt template category right-click menu"
         case .settingsJSON: return "config file preferences editor schema jsonc reload"
         case .reset: return "defaults reset"
         }

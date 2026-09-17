@@ -19,6 +19,7 @@ enum SettingsNavigationTarget: String, CaseIterable, Identifiable {
     case globalHotkey
     case keyboardShortcuts
     case workspaceColors
+    case snippets
     case settingsJSON
     case reset
 
@@ -44,6 +45,8 @@ enum SettingsNavigationTarget: String, CaseIterable, Identifiable {
             return String(localized: "settings.section.networking", defaultValue: "Networking")
         case .workspaceColors:
             return String(localized: "settings.section.workspaceColors", defaultValue: "Workspace Colors")
+        case .snippets:
+            return String(localized: "settings.section.snippets", defaultValue: "Snippets")
         case .sidebarAppearance:
             return String(localized: "settings.section.sidebarAppearance", defaultValue: "Sidebar")
         case .customSidebars:
@@ -89,6 +92,8 @@ enum SettingsNavigationTarget: String, CaseIterable, Identifiable {
             return "network"
         case .workspaceColors:
             return "paintpalette"
+        case .snippets:
+            return "text.cursor"
         case .sidebarAppearance:
             return "sidebar.left"
         case .customSidebars:
@@ -134,6 +139,8 @@ enum SettingsNavigationTarget: String, CaseIterable, Identifiable {
             return "\(title) iroh relay server private network tailscale vpn direct peer custom provider region"
         case .workspaceColors:
             return "\(title) palette tabs"
+        case .snippets:
+            return "\(title) snippet text action paste prompt template category right-click"
         case .sidebarAppearance:
             return "\(title) sidebar details branches badges material terminal background"
         case .customSidebars:
