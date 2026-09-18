@@ -383,7 +383,7 @@ extension CMUXCLI {
         Targets:
           account, app, terminal, networking, sidebar-appearance,
           custom-sidebars, automation, browser, browser-import,
-          global-hotkey, keyboard-shortcuts, shortcuts, workspace-colors,
+          global-hotkey, keyboard-shortcuts, shortcuts, workspace-colors, snippets,
           cmux-json, json, reset
 
         Config file:
@@ -433,6 +433,8 @@ extension CMUXCLI {
             return "keyboardShortcuts"
         case "workspace-colors", "workspacecolors", "colors":
             return "workspaceColors"
+        case "snippets", "snippet", "text-snippets":
+            return "snippets"
         case "cmux-json", "cmuxjson", "settings-json", "settingsjson", "json", "file", "settings-file":
             return "settingsJSON"
         case "reset":
