@@ -186,6 +186,8 @@ public protocol SettingsHostActions: AnyObject {
     /// Cross-platform Iroh and private-network settings controller supplied by
     /// the host app. `nil` in previews and hosts without the Iroh runtime.
     func irohSettingsController() -> (any CmxIrohSettingsControlling)?
+    /// Snippet persistence for Settings > Snippets; nil hides the editor.
+    func snippetSettingsController() -> (any SnippetSettingsControlling)?
 
     /// The Mac's system name (e.g. `Host.current().localizedName`) used as the
     /// iOS pairing display name when the user sets no override. The Mobile
@@ -433,6 +435,7 @@ public extension SettingsHostActions {
     }
 
     func irohSettingsController() -> (any CmxIrohSettingsControlling)? { nil }
+    func snippetSettingsController() -> (any SnippetSettingsControlling)? { nil }
 
     /// Default: empty, for hosts that cannot resolve the Mac's system name.
     func mobilePairingDefaultDisplayName() -> String { "" }

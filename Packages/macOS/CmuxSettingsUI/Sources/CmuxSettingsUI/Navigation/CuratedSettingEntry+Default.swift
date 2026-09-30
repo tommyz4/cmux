@@ -481,6 +481,9 @@ extension Array where Element == CuratedSettingEntry {
             ),
             .init(section: .workspaceColors, id: "palette", title: String(localized: "settings.workspaceColors.resetPalette", defaultValue: "Reset Palette"), synonyms: "Reset Palette reset palette named colors restore built-in custom remove default"),
 
+            // Snippets
+            .init(section: .snippets, id: "add", title: String(localized: "settings.snippets.addRow.title", defaultValue: "New Snippet"), synonyms: "snippet snippets add new text action paste prompt template category right click menu cmux.json actions"),
+
             // cmux.json
             .init(section: .settingsJSON, id: "open-file", title: String(localized: "settings.settingsJSON.file", defaultValue: "User config file"), synonyms: "User config file open config file json jsonc config editor ~/.config cmux preferences"),
             .init(section: .settingsJSON, id: "documentation", title: String(localized: "settings.settingsJSON.documentation", defaultValue: "Documentation"), synonyms: "Documentation docs documentation schema reference cmux json keys configuration"),

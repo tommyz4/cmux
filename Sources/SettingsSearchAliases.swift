@@ -39,6 +39,8 @@ enum SettingsSearchAliasIndex {
             return localized("settings.search.alias.section.keyboardShortcuts", defaultValue: "keybinds key bindings hotkeys chords accelerators commands")
         case .workspaceColors:
             return localized("settings.search.alias.section.workspaceColors", defaultValue: "tab colors palette accent badge selected highlight")
+        case .snippets:
+            return localized("settings.search.alias.section.snippets", defaultValue: "snippet snippets text action paste prompt template right click menu category")
         case .settingsJSON:
             return localized("settings.search.alias.section.settingsJSON", defaultValue: "configuration config file json jsonc dotfile ~/.config schema docs")
         case .reset:

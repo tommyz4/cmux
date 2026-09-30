@@ -604,6 +604,14 @@ final class HostSettingsActions: SettingsHostActions {
         }
     }
 
+    /// Settings > Snippets persistence, backed by the config store and the
+    /// JSONC-preserving action saver.
+    private lazy var snippetController = SnippetSettingsController.appDefault()
+
+    func snippetSettingsController() -> (any SnippetSettingsControlling)? {
+        snippetController
+    }
+
     func irohSettingsController() -> (any CmxIrohSettingsControlling)? {
         // Exactly one runtime owns the transport slot (gated in
         // MobileHostService.configure); Settings must read the same one, or
