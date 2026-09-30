@@ -165,6 +165,10 @@ extension SettingsWindowRoot {
             )
         }
 
+        slot(.snippets, proxy: proxy) {
+            SnippetsSection(hostActions: hostActions)
+        }
+
         slot(.settingsJSON, proxy: proxy) {
             SettingsJSONSection(jsonStore: jsonStore, hostActions: hostActions)
         }
