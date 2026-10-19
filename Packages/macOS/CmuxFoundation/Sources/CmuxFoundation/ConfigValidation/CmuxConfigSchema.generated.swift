@@ -915,6 +915,11 @@ enum CmuxEmbeddedConfigSchema {
           "default": true,
           "description": "Show a confirmation before closing a workspace with a running process, or several workspaces at once. Pinned workspaces still ask when this is off."
         },
+        "alwaysConfirmWorkspaceClose": {
+          "type": "boolean",
+          "default": false,
+          "description": "Ask before every workspace close, even when nothing in it is running. Overrides warnBeforeClosingWorkspace for workspace closes."
+        },
         "warnBeforeClosingWindow": {
           "type": "boolean",
           "default": true,
@@ -1877,6 +1882,13 @@ enum CmuxEmbeddedConfigSchema {
           "type": "boolean",
           "default": true,
           "description": "Lighten workspace colors in dark mode so they stay readable on a dark sidebar. false shows colors exactly as chosen. Applies to the solidFill indicator; leftRail always lightens its rail."
+        },
+        "unselectedFillOpacity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.7,
+          "description": "Opacity of the workspace color on rows that are not selected, with the solidFill indicator. 1 shows the full color. Multi-selected rows use half of this value."
         },
         "notificationBadgeColor": {
           "$ref": "#/$defs/colorHexOrNull",
