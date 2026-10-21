@@ -641667,61 +641667,179 @@
         }
       }
     },
+    "snippetsSidebar.add.label": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Snippet"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スニペットを追加"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Textbaustein hinzufügen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter un extrait"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إضافة مقتطف"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadir fragmento"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新增片段"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加片段"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "스니펫 추가"
+          }
+        }
+      }
+    },
+    "snippetsSidebar.add.tooltip": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add or edit snippets in Settings"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "設定でスニペットを追加・編集"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Textbausteine in den Einstellungen hinzufügen oder bearbeiten"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter ou modifier des extraits dans les réglages"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إضافة المقتطفات أو تعديلها في الإعدادات"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadir o editar fragmentos en Ajustes"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在設定中新增或編輯片段"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在设置中添加或编辑片段"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "설정에서 스니펫 추가 또는 편집"
+          }
+        }
+      }
+    },
     "snippetsSidebar.empty.hint": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Add a type \"text\" action to cmux.json."
+            "value": "Use + to add one in Settings."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "cmux.json に type \"text\" のアクションを追加してください。"
+            "value": "+ を使って設定で追加できます。"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fügen Sie cmux.json eine Aktion vom Typ \"text\" hinzu."
+            "value": "Mit + fügen Sie einen in den Einstellungen hinzu."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ajoutez une action de type \"text\" à cmux.json."
+            "value": "Utilisez + pour en ajouter un dans les réglages."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "أضف إجراءً من النوع \"text\" إلى cmux.json."
+            "value": "استخدم + لإضافة واحد في الإعدادات."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Añade una acción de tipo \"text\" a cmux.json."
+            "value": "Usa + para añadir uno en Ajustes."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "在 cmux.json 中新增 type 為 \"text\" 的動作。"
+            "value": "使用 + 在設定中新增一個。"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "在 cmux.json 中添加 type 为 \"text\" 的动作。"
+            "value": "使用 + 在设置中添加一个。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "cmux.json에 type \"text\" 동작을 추가하세요."
+            "value": "+를 사용해 설정에서 추가하세요."
           }
         }
       }

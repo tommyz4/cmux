@@ -35,20 +35,43 @@ struct SnippetsSidebarView: View {
     }
 
     private var searchBar: some View {
-        SidebarSearchFieldView(
-            text: $store.query,
-            placeholder: String(localized: "snippetsSidebar.searchPlaceholder", defaultValue: "Search snippets…"),
-            accessibilityIdentifier: SnippetsSidebarFocusBridge.searchFieldIdentifier,
-            onSubmit: activateSelection,
-            onCommandSubmit: activateSelection
-        )
+        HStack(spacing: RightSidebarChromeMetrics.headerControlSpacing) {
+            SidebarSearchFieldView(
+                text: $store.query,
+                placeholder: String(localized: "snippetsSidebar.searchPlaceholder", defaultValue: "Search snippets…"),
+                accessibilityIdentifier: SnippetsSidebarFocusBridge.searchFieldIdentifier,
+                onSubmit: activateSelection,
+                onCommandSubmit: activateSelection
+            )
+            .frame(height: searchFieldHeight)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .titlebarInteractiveControl()
+            addButton
+        }
         .frame(height: searchFieldHeight)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .titlebarInteractiveControl()
         .padding(.leading, SidebarSearchField.leadingPadding)
         .padding(.trailing, RightSidebarChromeMetrics.headerTrailingPadding)
         .padding(.top, SidebarSearchField.topPadding)
         .padding(.bottom, RightSidebarChromeMetrics.barVerticalPadding)
+    }
+
+    /// Opens Settings > Snippets, where snippets are added and edited. Same
+    /// 20-point header control as the Vault bar's view menu.
+    private var addButton: some View {
+        Button {
+            AppDelegate.presentPreferencesWindow(navigationTarget: .snippets)
+        } label: {
+            HeaderChromeIconStyle.symbol("plus")
+        }
+        .buttonStyle(RightSidebarHeaderIconButtonStyle(iconGeometryKeyPrefix: "rightSidebarSnippetsAddIcon"))
+        .frame(
+            width: RightSidebarChromeMetrics.headerControlSize,
+            height: RightSidebarChromeMetrics.headerControlSize
+        )
+        .help(String(localized: "snippetsSidebar.add.tooltip", defaultValue: "Add or edit snippets in Settings"))
+        .accessibilityLabel(Text(String(localized: "snippetsSidebar.add.label", defaultValue: "Add Snippet")))
+        .accessibilityIdentifier("SnippetsSidebarAddButton")
+        .titlebarInteractiveControl()
     }
 
     @ViewBuilder
@@ -56,7 +79,7 @@ struct SnippetsSidebarView: View {
         if store.entries.isEmpty {
             emptyState(
                 title: String(localized: "snippetsSidebar.empty.title", defaultValue: "No snippets configured"),
-                detail: String(localized: "snippetsSidebar.empty.hint", defaultValue: "Add a type \"text\" action to cmux.json.")
+                detail: String(localized: "snippetsSidebar.empty.hint", defaultValue: "Use + to add one in Settings.")
             )
         } else if store.results.isEmpty {
             emptyState(title: String(localized: "snippetsSidebar.noMatches", defaultValue: "No matches"), detail: nil)
