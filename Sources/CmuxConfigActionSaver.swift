@@ -119,11 +119,13 @@ enum CmuxConfigActionSaver {
             forTitle: title,
             existingIDs: existingActionIDs(inConfigSource: source).union(reservedActionIDs)
         )
-        let definition = CmuxConfigActionDefinition(
-            action: .text(payload),
-            title: title,
-            category: category
-        )
+        // An edit starts from the stored entry so fields the editor does not
+        // show (keywords, shortcut, icon, confirm, ...) survive the save.
+        var definition = existingActionID.flatMap { existingActionDefinition(id: $0, inConfigSource: source) }
+            ?? CmuxConfigActionDefinition(action: .text(payload), title: title, category: category)
+        definition.action = .text(payload)
+        definition.title = title
+        definition.category = category
         let valueJSON = try encodeActionValueJSON(definition)
         guard let updated = JSONCObjectEditor.setNestedObjectProperty(
             parentKey: "actions",
@@ -314,6 +316,19 @@ enum CmuxConfigActionSaver {
             return []
         }
         return Set(actions.keys)
+    }
+
+    /// The stored definition of `actions.<id>`, decoded on its own so an
+    /// unrelated malformed entry cannot hide it. Nil when absent or invalid.
+    static func existingActionDefinition(id: String, inConfigSource source: String) -> CmuxConfigActionDefinition? {
+        guard let sanitized = try? JSONCParser.preprocess(data: Data(source.utf8)),
+              let root = try? JSONSerialization.jsonObject(with: sanitized) as? [String: Any],
+              let actions = root["actions"] as? [String: Any],
+              let entry = actions[id],
+              let entryData = try? JSONSerialization.data(withJSONObject: entry) else {
+            return nil
+        }
+        return try? JSONDecoder().decode(CmuxConfigActionDefinition.self, from: entryData)
     }
 
     static func uniqueActionID(forTitle title: String, existingIDs: Set<String>) -> String {
