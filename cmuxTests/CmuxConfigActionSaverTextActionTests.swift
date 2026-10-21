@@ -123,4 +123,37 @@ struct CmuxConfigActionSaverTextActionTests {
         let config = try JSONDecoder().decode(CmuxConfigFile.self, from: JSONCParser.preprocess(data: Data(written.utf8)))
         #expect(Array(config.actions.keys) == ["b"])
     }
+
+    @Test func editingKeepsFieldsTheEditorDoesNotShow() throws {
+        let path = try makeConfigPath("""
+        {
+          "actions": {
+            "review": {
+              "type": "text",
+              "title": "Review",
+              "text": "old",
+              "keywords": ["pr", "diff"],
+              "shortcut": "cmd+shift+r",
+              "confirm": true
+            }
+          }
+        }
+        """)
+        try CmuxConfigActionSaver.saveTextAction(
+            id: "review",
+            title: "Review diff",
+            category: "Prompts",
+            payload: try payload("new"),
+            globalConfigPath: path
+        )
+        let written = try String(contentsOfFile: path, encoding: .utf8)
+        let config = try JSONDecoder().decode(CmuxConfigFile.self, from: JSONCParser.preprocess(data: Data(written.utf8)))
+        let saved = try #require(config.actions["review"])
+        #expect(saved.title == "Review diff")
+        #expect(saved.category == "Prompts")
+        #expect(saved.action?.textPayload?.text == "new")
+        #expect(saved.keywords == ["pr", "diff"])
+        #expect(saved.shortcut != nil)
+        #expect(saved.confirm == true)
+    }
 }
